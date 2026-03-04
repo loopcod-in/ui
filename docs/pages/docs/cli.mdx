@@ -1,0 +1,164 @@
+# CLI
+
+The @loopcod/ui CLI is the easiest way to add components to your project.
+
+## Installation
+
+The CLI is automatically available when you run:
+
+```bash
+npx @loopcod/ui@latest init
+```
+
+## Commands
+
+### `init`
+
+Initialize your project and install dependencies.
+
+```bash
+npx @loopcod/ui@latest init [options]
+```
+
+**Options**
+
+| Option | Description |
+|--------|-------------|
+| `-y, --yes` | Skip confirmation prompt |
+| `-t, --template <template>` | Use a template (saas-starter, dashboard, landing-page, auth-only) |
+| `-b, --base-color <color>` | Base color (slate, gray, zinc, neutral, stone) |
+
+**Examples**
+
+```bash
+# Initialize with defaults
+npx @loopcod/ui@latest init
+
+# Initialize with a template
+npx @loopcod/ui@latest init --template saas-starter
+
+# Skip prompts
+npx @loopcod/ui@latest init --yes
+```
+
+---
+
+### `add`
+
+Add components to your project.
+
+```bash
+npx @loopcod/ui@latest add [components...] [options]
+```
+
+**Options**
+
+| Option | Description |
+|--------|-------------|
+| `-y, --yes` | Skip confirmation prompt |
+| `-o, --overwrite` | Overwrite existing files |
+| `-p, --path <path>` | Custom path for components |
+| `-a, --all` | Add all available components |
+
+**Examples**
+
+```bash
+# Add specific components
+npx @loopcod/ui@latest add button card
+
+# Add all components
+npx @loopcod/ui@latest add --all
+
+# Add auth components
+npx @loopcod/ui@latest add login-form signup-form
+
+# Add with custom path
+npx @loopcod/ui@latest add button --path src/components
+```
+
+---
+
+### `diff`
+
+Check for updates to components.
+
+```bash
+npx @loopcod/ui@latest diff [component]
+```
+
+**Examples**
+
+```bash
+# Check all components
+npx @loopcod/ui@latest diff
+
+# Check specific component
+npx @loopcod/ui@latest diff button
+```
+
+---
+
+### `update`
+
+Update components to the latest version.
+
+```bash
+npx @loopcod/ui@latest update [components...] [options]
+```
+
+**Options**
+
+| Option | Description |
+|--------|-------------|
+| `-a, --all` | Update all components |
+
+**Examples**
+
+```bash
+# Update all components
+npx @loopcod/ui@latest update --all
+
+# Update specific components
+npx @loopcod/ui@latest update button card
+```
+
+---
+
+### `info`
+
+Show information about a component.
+
+```bash
+npx @loopcod/ui@latest info <component>
+```
+
+**Examples**
+
+```bash
+npx @loopcod/ui@latest info button
+```
+
+---
+
+## Global Installation
+
+You can also install the CLI globally:
+
+```bash
+npm install -g @loopcod/ui
+```
+
+Then use it anywhere:
+
+```bash
+loopcod init
+loopcod add button
+loopcod diff
+```
+
+Or use the shorter alias:
+
+```bash
+lcui init
+lcui add button
+```

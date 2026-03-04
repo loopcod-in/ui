@@ -1,0 +1,176 @@
+# Theming
+
+@loopcod/ui uses CSS variables for theming, making it easy to customize the look and feel of your application.
+
+## Default Theme
+
+The default theme is defined in `app/globals.css`:
+
+```css
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+```
+
+## Base Colors
+
+When you run `npx @loopcod/ui@latest init`, you can choose a base color:
+
+- `slate` (default)
+- `gray`
+- `zinc`
+- `neutral`
+- `stone`
+
+## Customizing Colors
+
+To customize the theme, edit the CSS variables in `app/globals.css`:
+
+```css
+@layer base {
+  :root {
+    /* Your brand color */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Rounded corners */
+    --radius: 0.75rem;
+  }
+}
+```
+
+## Dark Mode
+
+Dark mode is built-in. The dark theme is defined using the `.dark` class:
+
+```css
+@layer base {
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    /* ... */
+  }
+}
+```
+
+### Enabling Dark Mode
+
+Add a theme toggle to your app:
+
+```tsx
+"use client"
+
+import { useTheme } from "next-themes"
+
+export function ThemeToggle() {
+  const { theme, setTheme } = useTheme()
+
+  return (
+    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      Toggle Theme
+    </button>
+  )
+}
+```
+
+Wrap your app with the theme provider:
+
+```tsx
+import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({ children }) {
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+## CSS Variables Reference
+
+| Variable | Description |
+|----------|-------------|
+| `--background` | Page background |
+| `--foreground` | Primary text color |
+| `--card` | Card background |
+| `--card-foreground` | Card text color |
+| `--popover` | Popover/dropdown background |
+| `--popover-foreground` | Popover text color |
+| `--primary` | Primary brand color |
+| `--primary-foreground` | Text on primary color |
+| `--secondary` | Secondary color |
+| `--secondary-foreground` | Text on secondary color |
+| `--muted` | Muted/subtle background |
+| `--muted-foreground` | Muted text color |
+| `--accent` | Accent color |
+| `--accent-foreground` | Text on accent color |
+| `--destructive` | Error/danger color |
+| `--destructive-foreground` | Text on destructive color |
+| `--border` | Border color |
+| `--input` | Input border color |
+| `--ring` | Focus ring color |
+| `--radius` | Border radius (in rem) |
+
+## Tailwind Config
+
+The CSS variables are mapped to Tailwind classes in `tailwind.config.ts`:
+
+```ts
+theme: {
+  extend: {
+    colors: {
+      border: "hsl(var(--border))",
+      input: "hsl(var(--input))",
+      ring: "hsl(var(--ring))",
+      background: "hsl(var(--background))",
+      foreground: "hsl(var(--foreground))",
+      primary: {
+        DEFAULT: "hsl(var(--primary))",
+        foreground: "hsl(var(--primary-foreground))",
+      },
+      // ...
+    },
+    borderRadius: {
+      lg: "var(--radius)",
+      md: "calc(var(--radius) - 2px)",
+      sm: "calc(var(--radius) - 4px)",
+    },
+  },
+}
+```
+
+This allows you to use Tailwind classes like:
+
+```tsx
+<div className="bg-primary text-primary-foreground rounded-lg">
+  Content
+</div>
+```

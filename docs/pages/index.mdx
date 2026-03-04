@@ -1,51 +1,58 @@
+import { Callout, Tabs, Steps } from 'nextra/components'
+import { ComponentExample } from '../components/ComponentExample'
+
 # @loopcod/ui
 
-**SaaS-focused UI components for React.**
+**SaaS-focused UI components for React.** The component library for building production-ready SaaS applications.
 
-## What is Loopcod UI?
+<Callout type="info">
+  This is not a component library. It is a collection of re-usable components that you can copy and paste into your apps.
+</Callout>
 
-Loopcod UI is a collection of reusable components and templates designed specifically for building SaaS applications. Unlike generic component libraries, we provide:
+## What is @loopcod/ui?
 
-- **Complete auth flows** (login, signup, password reset)
-- **Dashboard layouts** with navigation
-- **Billing components** (pricing tables, checkout)
-- **Marketing sections** (hero, features, testimonials)
-- **All the UI primitives** you need (button, card, input, etc.)
+**@loopcod/ui** provides complete, production-ready SaaS building blocks — not just UI primitives:
+
+- **🔐 Auth Components** — Login forms, signup, password reset (with validation)
+- **📊 Dashboard Components** — Shell layout, stats cards, data tables
+- **💳 Billing Components** — Pricing tables, checkout forms
+- **🎨 Marketing Sections** — Hero, features, testimonials, CTAs
+- **🧩 UI Primitives** — Button, Card, Input, and more
 
 ## Quick Start
 
+<Steps>
+
+### Create project
+
 ```bash
-# Initialize your project
-npx @loopcod/ui@latest init
-
-# Add components
-npx @loopcod/ui@latest add button login-form
-
-# Or use a template
-npx @loopcod/ui@latest init --template saas-starter
+npx create-next-app@latest my-app --typescript --tailwind --eslint
 ```
+
+### Initialize @loopcod/ui
+
+```bash
+cd my-app
+npx @loopcod/ui@latest init
+```
+
+### Add components
+
+```bash
+npx @loopcod/ui@latest add button login-form pricing-table
+```
+
+</Steps>
+
+## Preview
+
+<ComponentExample />
 
 ## Features
 
-### 🧩 UI Primitives
-Beautiful, accessible components built with Radix UI and Tailwind CSS.
-
-### 🔐 Auth Components
-Production-ready authentication forms with validation and error handling.
-
-### 📊 Dashboard
-Complete dashboard shell with sidebar, navigation, and responsive layout.
-
-### 💳 Billing
-Pricing tables, checkout forms, and subscription management.
-
-### 🎨 Theming
-Easy customization with CSS variables. Dark mode included.
-
-## Getting Started
-
-Learn more about:
-- [Installation](/docs/installation)
-- [Theming](/docs/theming)
-- [Components](/docs/components)
-- [Templates](/docs/templates)
+- **Open Source** — Free forever
+- **TypeScript** — Full type safety
+- **Tailwind CSS** — Easy customization
+- **Radix UI** — Accessible primitives
+- **Dark Mode** — Built-in support
+- **CLI** — One command to add components

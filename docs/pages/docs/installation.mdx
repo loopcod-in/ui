@@ -1,38 +1,89 @@
+import { Steps, Callout } from 'nextra/components'
+
 # Installation
 
-## Requirements
-
-- Node.js 18+
-- React 18+
-- Tailwind CSS 3.4+
+<Callout type="info">
+  This guide assumes you have a Next.js project with TypeScript and Tailwind CSS set up.
+</Callout>
 
 ## Quick Start
 
-The fastest way to get started is with our CLI:
+<Steps>
+
+### Initialize your project
+
+Run the `init` command to create a new Next.js project or setup an existing one:
 
 ```bash
 npx @loopcod/ui@latest init
 ```
 
 This will:
-1. Detect your package manager
-2. Install required dependencies
-3. Set up Tailwind CSS configuration
-4. Create `components.json` config file
-5. Set up project structure
+- Install required dependencies
+- Configure `tailwind.config.ts`
+- Setup CSS variables
+- Create `components.json`
+
+### Configure path aliases
+
+Make sure your `tsconfig.json` has the following path aliases:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+### Add components
+
+Add components using the CLI:
+
+```bash
+npx @loopcod/ui@latest add button card login-form
+```
+
+You can also add all components at once:
+
+```bash
+npx @loopcod/ui@latest add --all
+```
+
+### Start building
+
+Import and use the components in your app:
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { LoginForm } from "@/components/auth/login-form"
+
+export default function Home() {
+  return (
+    <div>
+      <Button>Click me</Button>
+      <LoginForm />
+    </div>
+  )
+}
+```
+
+</Steps>
 
 ## Manual Installation
 
-If you prefer manual setup:
+If you prefer to set things up manually:
 
 ### 1. Install dependencies
 
 ```bash
 npm install class-variance-authority clsx tailwind-merge lucide-react
-npm install @radix-ui/react-slot @radix-ui/react-dialog @radix-ui/react-dropdown-menu
+npm install @radix-ui/react-slot @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-label
 ```
 
-### 2. Add utility function
+### 2. Add the cn helper
 
 Create `lib/utils.ts`:
 
@@ -45,14 +96,126 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-### 3. Configure Tailwind
+### 3. Configure Tailwind CSS
 
-Update your `tailwind.config.ts` with CSS variables support.
+Add to your `tailwind.config.ts`:
+
+```ts
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
+  },
+}
+```
 
 ### 4. Add CSS variables
 
-Add to your `globals.css`.
+Add to your `app/globals.css`:
 
-## Next Steps
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-Browse our components and templates to start building!
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
