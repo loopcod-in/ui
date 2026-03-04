@@ -7,6 +7,8 @@ on:
     branches: [main]
 
 env:
+  # Disable Turborepo telemetry
+  # Learn more: https://turbo.build/repo/docs/telemetry
   TURBO_TELEMETRY_DISABLED: 1
 
 jobs:
