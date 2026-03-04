@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function Home() {
   return (
@@ -9,58 +7,49 @@ export default function Home() {
         <h1 className="text-4xl font-bold text-center mb-8">
           🚀 SaaS Starter
         </h1>
-        <p className="text-center text-muted-foreground mb-8">
+        <p className="text-center text-gray-600 mb-8">
           Built with Loopcod UI
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>Authentication</CardTitle>
-              <CardDescription>
-                Pre-built auth flows with validation
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/login">
-                <Button variant="outline" className="w-full">
-                  View Login
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="border rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-2">Authentication</h3>
+            <p className="text-gray-600 mb-4">
+              Pre-built auth flows with validation
+            </p>
+            <Link 
+              href="/login"
+              className="inline-block px-4 py-2 border rounded hover:bg-gray-100"
+            >
+              View Login
+            </Link>
+          </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Dashboard</CardTitle>
-              <CardDescription>
-                Admin dashboard with navigation
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/dashboard">
-                <Button variant="outline" className="w-full">
-                  View Dashboard
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="border rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-2">Dashboard</h3>
+            <p className="text-gray-600 mb-4">
+              Admin dashboard with navigation
+            </p>
+            <Link 
+              href="/dashboard"
+              className="inline-block px-4 py-2 border rounded hover:bg-gray-100"
+            >
+              View Dashboard
+            </Link>
+          </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Pricing</CardTitle>
-              <CardDescription>
-                Pricing table with tiers
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/pricing">
-                <Button variant="outline" className="w-full">
-                  View Pricing
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <div className="border rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-2">Pricing</h3>
+            <p className="text-gray-600 mb-4">
+              Pricing table with tiers
+            </p>
+            <Link 
+              href="/pricing"
+              className="inline-block px-4 py-2 border rounded hover:bg-gray-100"
+            >
+              View Pricing
+            </Link>
+          </div>
         </div>
       </div>
     </main>
