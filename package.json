@@ -1,0 +1,44 @@
+{
+  "name": "@loopcod/ui-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "SaaS-focused UI component library - The shadcn/ui for building production-ready SaaS applications",
+  "author": "Loopcod <hello@loopcod.in>",
+  "license": "MIT",
+  "homepage": "https://ui.loopcod.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loopcod/ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/loopcod/ui/issues"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "saas",
+    "tailwindcss",
+    "nextjs",
+    "shadcn",
+    "design-system"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "release": "changeset publish",
+    "version": "changeset version"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

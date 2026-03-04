@@ -1,0 +1,50 @@
+# Components
+
+## UI Primitives
+
+### Button
+Interactive button with variants.
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+<Button variant="outline" size="lg">
+  Click me
+</Button>
+```
+
+### Card
+Container with sections.
+
+```tsx
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+</Card>
+```
+
+## Auth Components
+
+### LoginForm
+
+```tsx
+import { LoginForm } from "@/components/auth/login-form"
+
+<LoginForm onSubmit={handleLogin} />
+```
+
+## Dashboard Components
+
+### DashboardShell
+
+```tsx
+import { DashboardShell } from "@/components/dashboard/shell"
+
+<DashboardShell>
+  <YourContent />
+</DashboardShell>
+```
