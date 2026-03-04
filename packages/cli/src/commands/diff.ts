@@ -3,6 +3,7 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
 import { fetchRegistry } from "../utils/registry.js";
+import ora from "ora";
 import { logger } from "../utils/logger.js";
 
 export const diff = new Command()
@@ -27,11 +28,11 @@ export const diff = new Command()
       : await getInstalledComponents(componentsDir);
 
     for (const name of components) {
-      const spinner = logger.info(`Checking ${name}...`);
+      const spinner = ora(`Checking ${name}...`).start();
       
       const registryComponent = await fetchRegistry(name);
       if (!registryComponent) {
-        logger.warn(`Component ${name} not found in registry.`);
+        spinner.warn(`Component ${name} not found in registry.`);
         continue;
       }
 
@@ -39,7 +40,7 @@ export const diff = new Command()
       const localPath = path.join(componentsDir, registryComponent.category, `${name}.tsx`);
       
       if (!await fs.pathExists(localPath)) {
-        logger.warn(`${name}: Not installed locally`);
+        spinner.warn(`${name}: Not installed locally`);
         continue;
       }
 
@@ -47,9 +48,9 @@ export const diff = new Command()
       const registryContent = registryComponent.files[0]?.content;
 
       if (localContent !== registryContent) {
-        console.log(chalk.yellow(`  ${name}: Update available`));
+        spinner.warn(chalk.yellow(`${name}: Update available`));
       } else {
-        console.log(chalk.green(`  ${name}: Up to date`));
+        spinner.succeed(chalk.green(`${name}: Up to date`));
       }
     }
 

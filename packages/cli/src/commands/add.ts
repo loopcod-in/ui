@@ -86,7 +86,7 @@ export const add = new Command()
   .option("-a, --all", "add all available components", false)
   .action(async (components, opts) => {
     try {
-      const options = addOptionsSchema.parse({
+      const options: AddOptions = addOptionsSchema.parse({
         components,
         yes: opts.yes,
         overwrite: opts.overwrite,
