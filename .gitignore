@@ -10,8 +10,7 @@ build
 .vercel
 .turbo
 
-# Environment files
-.env
+# Environment files (keep .env for telemetry setting)
 .env.local
 .env.development.local
 .env.test.local
