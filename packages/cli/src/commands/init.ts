@@ -34,7 +34,7 @@ export const init = new Command()
       });
 
       const cwd = process.cwd();
-      const packageManager = getPackageManager();
+      const packageManager = await getPackageManager();
 
       // Check if project exists
       const exists = await fs.pathExists(path.join(cwd, "package.json"));
